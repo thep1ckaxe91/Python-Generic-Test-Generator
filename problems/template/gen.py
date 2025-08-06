@@ -1,7 +1,7 @@
 import os
 from subprocess import run
 from concurrent.futures import ThreadPoolExecutor, Future
-from random import uniform, randint, random, choice
+from random import uniform, randint, random, choice, shuffle
 from faker import Faker
 
 fake = Faker()
@@ -60,7 +60,6 @@ def gen_outputs() -> None:
             future.result()
         except Exception as e:
             print(f"Error generating output: {e}")
-            return
         finally:
             file.close()
 
