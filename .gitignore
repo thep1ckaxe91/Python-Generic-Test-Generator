@@ -1,2 +1,3 @@
 /problems/**
 !problems/template*
+.venv/
