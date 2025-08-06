@@ -39,7 +39,7 @@ def gen_problem(problem_id: int, problem_type: str, problem_prefix: str) -> None
     shutil.make_archive(
         os.path.join(problem_dir, problem_name, problem_name),
         "zip",
-        root_dir=os.path.dirname(__file__),
+        root_dir=os.path.join(problem_dir, problem_name, problem_name),
         base_dir=os.path.join(problem_dir, problem_name, problem_name),
     )
 

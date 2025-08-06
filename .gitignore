@@ -1,3 +1,4 @@
 /problems/**
 !problems/template*
 .venv/
+/checker/**
