@@ -2,3 +2,4 @@
 !problems/template*
 .venv/
 /checker/**
+test.py
