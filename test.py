@@ -1,5 +1,17 @@
-from faker import Faker
+# import the required libraries 
+import random 
+import matplotlib.pyplot as plt 
+  
+# store the random numbers in a list 
+nums = [] 
+mu = 30
+sigma = 7
+  
 
-fake = Faker()
-for __ in range(1234):
-    print(len([ x for x in [len(fake.name()) for _ in range(10000)] if x > 50]))
+for i in range(1000000): 
+    temp = random.normalvariate(mu, sigma) 
+    nums.append(temp) 
+      
+# plotting a graph 
+plt.hist(nums, bins = 'auto') 
+plt.show()

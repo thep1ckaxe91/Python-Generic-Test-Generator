@@ -99,7 +99,4 @@ PROBLEM NAME: {problem_name.upper()}
 
 if __name__ == "__main__":
     gen_tests()
-    print(f"Tests generated in {test_dir}")
-    print(f"Test files: {os.listdir(test_dir)}")
-    print(f"Test directories: {os.listdir(os.path.dirname(test_dir))}")
     print("Done.")
