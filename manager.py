@@ -19,10 +19,12 @@ def gen_problem(problem_id: int, problem_type: str, problem_prefix: str) -> None
             os.path.join(problem_dir, "template", "gen.py"),
             os.path.join(problem_dir, problem_name, "gen.py"),
         )
+    if not os.path.exists(os.path.join(problem_dir, problem_name, problem_name + ".py")):
         shutil.copy(
             os.path.join(problem_dir, "template", "solution.py"),
             os.path.join(problem_dir, problem_name, problem_name + ".py"),
         )
+    if not os.path.exists(os.path.join(problem_dir, problem_name, problem_name + ".md")):
         shutil.copy(
             os.path.join(problem_dir, "template", "problem.md"),
             os.path.join(problem_dir, problem_name, problem_name + ".md"),
@@ -39,7 +41,8 @@ def gen_problem(problem_id: int, problem_type: str, problem_prefix: str) -> None
         return
 
     print(f"Problem {problem_name} generated successfully. Zipping test files...")
-
+    if os.path.exists(os.path.join(problem_dir, problem_name, problem_name+'.zip')):
+        os.remove(os.path.join(problem_dir, problem_name, problem_name+'.zip'))
     shutil.make_archive(
         os.path.join(problem_dir, problem_name, problem_name),
         "zip",

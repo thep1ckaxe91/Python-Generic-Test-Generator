@@ -12,7 +12,7 @@ problem_name = "" # will be the name of the only folder in the same dir with thi
 for _,dirs,__ in os.walk(os.path.dirname(__file__)):
     problem_name = dirs[0]
     break
-number_of_tests = 20  # CHANGE THIS to the number of tests you want to generate
+number_of_tests = 1  # CHANGE THIS to the number of tests you want to generate
 
 test_dir = os.path.join(os.path.dirname(__file__), problem_name)
 

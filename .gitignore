@@ -3,3 +3,4 @@
 .venv/
 /checker/**
 test.py
+**__pycache__**
