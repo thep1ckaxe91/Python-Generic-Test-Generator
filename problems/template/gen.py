@@ -1,7 +1,8 @@
 import os
+import random
 from subprocess import run
 from concurrent.futures import ThreadPoolExecutor, Future
-from random import uniform, randint, random, choice, shuffle
+from random import uniform, randint, random, choice, shuffle, randbytes
 from faker import Faker
 
 fake = Faker()
@@ -13,7 +14,7 @@ for _,dirs,__ in os.walk(os.path.dirname(__file__)):
     problem_name = dirs[0]
     break
 number_of_tests = 1  # CHANGE THIS to the number of tests you want to generate
-
+io_binary = False
 test_dir = os.path.join(os.path.dirname(__file__), problem_name)
 
 
@@ -47,10 +48,10 @@ def gen_outputs() -> None:
                         "python3",
                         os.path.join(os.path.dirname(__file__), f"{problem_name}.py"),
                     ],
-                    input=open(
-                        os.path.join(test_dir, f"Test{i:03d}", f"{problem_name}.inp")
-                    ).read(),
-                    text=True,
+                    stdin=open(
+                        os.path.join(test_dir, f"Test{i:03d}", f"{problem_name}.inp"), 'r'
+                    ),
+                    text=(not io_binary),
                     stdout=output_files[-1],
                     check=True,
                 )
