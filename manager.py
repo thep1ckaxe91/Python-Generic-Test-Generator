@@ -54,7 +54,7 @@ def gen_problem(problem_id: int, problem_type: str, problem_prefix: str) -> None
 try:
     problems: list[int] = list(map(int, sys.argv[3:]))  # change this
     problem_prefix = sys.argv[1]
-    problem_type = sys.argv[2]
+    problem_type = sys.argv[2] or ""    
 except:
     print(
         "Invalid argv, please enter the following format: problem_prefix problem_type id1 id2 id3 ..."

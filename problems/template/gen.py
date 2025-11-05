@@ -9,14 +9,14 @@ fake = Faker()
 
 workers = 6
 
-problem_name = "" # will be the name of the only folder in the same dir with this file
-for _,dirs,__ in os.walk(os.path.dirname(__file__)):
-    problem_name = dirs[0]
-    break
+problem_name = os.path.basename(os.path.dirname(__file__))
+
 number_of_tests = 1  # CHANGE THIS to the number of tests you want to generate
 io_binary = False
 test_dir = os.path.join(os.path.dirname(__file__), problem_name)
 
+input_file = ""
+output_file = ""
 
 def gen_test_number(num: int) -> None:
     print(f"Generating inp test {num}...")
@@ -64,6 +64,35 @@ def gen_outputs() -> None:
         finally:
             file.close()
 
+# def gen_outputs() -> None: # use one or another for std / file io type problem
+#     # with ThreadPoolExecutor(1) as pool:
+#     for i in range(1, number_of_tests + 1):
+#         print(f"Generating out test {i}...")
+
+#         copy(
+#             os.path.join(test_dir, f"Test{i:03d}", f"{problem_name}.inp"),
+#             os.path.join(os.path.dirname(__file__), input_file)
+#         )
+#         timeout = 5
+#         start = time.perf_counter()
+#         try:
+#             run(
+#                 [
+#                     "python3",
+#                     os.path.join(os.path.dirname(__file__), f"{problem_name}.py"),
+#                 ],
+#                 cwd=os.path.dirname(__file__),
+#                 check=True,
+#                 timeout=timeout
+#             )
+#         except TimeoutExpired:
+#             print(f"Test {i} runtime exceed {timeout}s, abort")
+#         end = time.perf_counter()
+#         print(f"Test {i} output generated in {end - start:.2f}s")
+#         copy(
+#             os.path.join(os.path.dirname(__file__), output_file),
+#             os.path.join(test_dir, f"Test{i:03d}", f"{problem_name}.out"),
+#         )
 
 def gen_inputs() -> None:
     os.makedirs(test_dir, exist_ok=True)
