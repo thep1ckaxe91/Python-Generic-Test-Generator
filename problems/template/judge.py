@@ -15,17 +15,23 @@ def judge_test(test_num: int):
         out_lines = f.readlines()
 
     def default():
-        return all([a.strip() == o.strip() for a, o in zip(ans_lines, out_lines)])
-
+        try:
+            return all([a.strip() == o.strip() for a, o in zip(ans_lines, out_lines, strict=True)])
+        except:
+            return False
 
     def float_cmp():
-        return all(
-            all(x - y <= 1e-2 for x, y in zip(map(float, a.split()), map(float, o.split())))
-            for a, o in zip(ans_lines, out_lines)
-        )
+        try:
+            return all(
+                all(x - y <= 1e-2 for x, y in zip(map(float, a.split()), map(float, o.split()), strict=True))
+                for a, o in zip(ans_lines, out_lines)
+            )
+        except:
+            return False
+
         
 
-    return float_cmp
+    return float_cmp()
 
 SubmissionResult = tuple[int, float, float]
 
