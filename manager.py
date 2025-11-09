@@ -19,6 +19,19 @@ def gen_problem(problem_id: int, problem_type: str, problem_prefix: str) -> None
             os.path.join(problem_dir, "template", "gen.py"),
             os.path.join(problem_dir, problem_name, "gen.py"),
         )
+    
+    if not os.path.exists(os.path.join(problem_dir, problem_name, "judge.py")):
+        shutil.copy(
+            os.path.join(problem_dir, "template", "judge.py"),
+            os.path.join(problem_dir, problem_name, "judge.py"),
+        )
+
+    if not os.path.exists(os.path.join(problem_dir, problem_name, "submission.py")):
+        shutil.copy(
+            os.path.join(problem_dir, "template", "submission.py"),
+            os.path.join(problem_dir, problem_name, "submission.py"),
+        )
+
     if not os.path.exists(os.path.join(problem_dir, problem_name, problem_name + ".py")):
         shutil.copy(
             os.path.join(problem_dir, "template", "solution.py"),
@@ -29,6 +42,9 @@ def gen_problem(problem_id: int, problem_type: str, problem_prefix: str) -> None
             os.path.join(problem_dir, "template", "problem.md"),
             os.path.join(problem_dir, problem_name, problem_name + ".md"),
         )
+
+
+    
     try:
         run(
             ["python3", os.path.join(problem_dir, problem_name, "gen.py")],
