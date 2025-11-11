@@ -1,9 +1,11 @@
-import os
+import os, time
 import random
-from subprocess import run
+from subprocess import run, TimeoutExpired
 from concurrent.futures import ThreadPoolExecutor, Future
 from random import uniform, randint, random, choice, shuffle, randbytes
 from faker import Faker
+from shutil import copy
+
 
 fake = Faker()
 
@@ -74,8 +76,8 @@ def gen_outputs_file() -> None: # use one or another for std / file io type prob
             os.path.join(os.path.dirname(__file__), input_file)
         )
         timeout = 5
-        start = time.perf_counter()
         try:
+            start = time.perf_counter()
             run(
                 [
                     "python3",
@@ -85,10 +87,10 @@ def gen_outputs_file() -> None: # use one or another for std / file io type prob
                 check=True,
                 timeout=timeout
             )
+            end = time.perf_counter()
+            print(f"Test {i} output generated in {end - start:.2f}s")
         except TimeoutExpired:
             print(f"Test {i} runtime exceed {timeout}s, abort")
-        end = time.perf_counter()
-        print(f"Test {i} output generated in {end - start:.2f}s")
         copy(
             os.path.join(os.path.dirname(__file__), output_file),
             os.path.join(test_dir, f"Test{i:03d}", f"{problem_name}.out"),
