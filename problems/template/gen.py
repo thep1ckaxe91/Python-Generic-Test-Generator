@@ -1,5 +1,4 @@
 import os, time
-import random
 from subprocess import run, TimeoutExpired
 from concurrent.futures import ThreadPoolExecutor, Future
 from random import uniform, randint, random, choice, shuffle, randbytes
@@ -66,8 +65,7 @@ def gen_outputs_std() -> None:
         finally:
             file.close()
 
-def gen_outputs_file() -> None: # use one or another for std / file io type problem
-    # with ThreadPoolExecutor(1) as pool:
+def gen_outputs_file() -> None:
     for i in range(1, number_of_tests + 1):
         print(f"Generating out test {i}...")
 
@@ -103,7 +101,6 @@ def gen_inputs() -> None:
         for i in range(1, number_of_tests + 1):
             test_path = os.path.join(test_dir, f"Test{i:03d}")
             os.makedirs(test_path, exist_ok=True)
-            # gen_test_number(i)
             pool.submit(gen_test_number, i)
 
 
