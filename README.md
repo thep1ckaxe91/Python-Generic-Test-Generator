@@ -15,7 +15,7 @@ This repository provides a framework for generating test cases for Python script
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
+    git clone [<repository_url>](https://github.com/thep1ckaxe91/Python-Generic-Test-Generator.git)
     ```
 2.  **Install the dependencies:**
     ```bash
