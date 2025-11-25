@@ -7,9 +7,8 @@ import glob
 
 problem_dir = os.path.join(os.path.dirname(__file__), "problems")
 
-def create_problem(problem_id: int, problem_type: str, problem_prefix: str, checker_lang: str | None = None) -> None:
-    print(f"Creating problem {problem_id}...")
-    problem_name = f"{problem_prefix}{problem_type}{problem_id}"
+def create_problem(problem_name: str, checker_lang: str = None) -> None:
+    print(f"Creating problem {problem_name}...")
     problem_path = os.path.join(problem_dir, problem_name)
 
     if os.path.exists(problem_path):
@@ -120,11 +119,7 @@ def main() -> None:
 
     # 'new' command
     parser_new = subparsers.add_parser("new", help="Create a new problem")
-    parser_new.add_argument("problem_prefix", help="Prefix for the problem name")
-    parser_new.add_argument("problem_type", help="Type of the problem")
-    parser_new.add_argument(
-        "ids", nargs="+", type=int, help="List of problem IDs to generate"
-    )
+    parser_new.add_argument("problem_names", nargs="+", help="List of problem names to create")
     parser_new.add_argument(
         "--checker",
         choices=["py", "cpp"],
@@ -145,8 +140,8 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.command == "new":
-        for problem_id in args.ids:
-            create_problem(problem_id, args.problem_type, args.problem_prefix, args.checker)
+        for problem_name in args.problem_names:
+            create_problem(problem_name, args.checker)
     elif args.command == "gen":
         for problem_name in args.problem_names:
             generate_tests(problem_name)

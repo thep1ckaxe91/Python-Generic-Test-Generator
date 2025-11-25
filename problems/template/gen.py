@@ -10,13 +10,13 @@ fake = Faker()
 
 workers = 6
 
-problem_name = os.path.basename(os.path.dirname(__file__))
+problem_name = os.path.basename(os.path.dirname(__file__)) # No modification
 
 number_of_tests = 1  # CHANGE THIS to the number of tests you want to generate
-io_binary = False
-test_dir = os.path.join(os.path.dirname(__file__), problem_name)
+io_binary = False # True if the output file is binary format
+test_dir = os.path.join(os.path.dirname(__file__), problem_name) # No modification
 
-input_file = "stdin"
+input_file = "stdin" # If leave as stdin, the code use stdio instead, change to full file name if want file io
 output_file = "stdout"
 
 def gen_test_number(num: int) -> None:

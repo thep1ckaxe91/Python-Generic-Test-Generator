@@ -35,11 +35,11 @@ Use `python manager.py <command> --help` for more details on each command.
 #### Creating a New Problem
 
 ```bash
-python manager.py new <prefix> <type> <id1> <id2> ... [--checker <py/cpp>]
+python manager.py new <problem_name_1> <problem_name_2> ... [--checker <py/cpp>]
 ```
-- **Example**: `python manager.py new pythonmastery pandas 1 2 3`
-- This creates problem directories like `problems/pythonmasterypandas1/`.
-- The `--checker` flag will also create a checker file (e.g., `pythonmasterypandas1.checker.cpp`).
+- **Example**: `python manager.py new problem1 problem2`
+- This creates problem directories like `problems/problem1/`.
+- The `--checker` flag will also create a checker file (e.g., `problem1.checker.cpp`).
 
 #### Generating Test Cases
 
